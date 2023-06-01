@@ -2,41 +2,34 @@ import Logo from "../icons/Chef in the Hat.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-// SPA - Single Page Routing
-// Client Side Routing
-
 export const Title = () => (
   <div>
     <a href="/">
-      <img className="logo" src={Logo} alt="logo" />
+      <img className="h-28 p-2" alt="logo" src={Logo} />
     </a>
   </div>
 );
 
-// Functional Component
-
 const Header = function () {
-  // Normal function
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  //console.log(useState());
 
   return (
-    <div className="header">
+    <div className=" flex justify-between bg-yellow-200 shadow-md">
       <Title />
 
       <div className="Nav-container">
-        <ul>
-          <li>
+        <ul className=" flex py-10">
+          <li className=" px-2 ">
             <Link to="/" id="Nav-container" className="fa fa-home">
               Home
             </Link>
           </li>
-          <li>
+          <li className=" px-2 justify-center ">
             <Link to="/about" id="Nav-container" className="fa fa-info-circle">
               About us
             </Link>
           </li>
-          <li>
+          <li className=" px-2 ">
             <Link
               to="/contact"
               id="Nav-container"
@@ -45,7 +38,7 @@ const Header = function () {
               Cart
             </Link>
           </li>
-          <li>
+          <li className=" px-2 ">
             <Link
               to="/contact"
               id="Nav-container"
@@ -56,7 +49,7 @@ const Header = function () {
           </li>
 
           {/* use conditional rendering for login and logout */}
-          <li>
+          <li className=" px-2 justify-end">
             {isLoggedIn ? (
               <button
                 className="logout-btn"

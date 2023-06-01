@@ -53,11 +53,11 @@ const Body = () => {
 
   return (
     <>
-      <div className="Search-container">
+      <div className="Search-container p-5 margin-2 ">
         <input
           type="text"
           className="search-bar"
-          placeholder="Search for restaurants and food"
+          placeholder="Search "
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
@@ -66,23 +66,33 @@ const Body = () => {
 
         {}
         <button
-          className="search-btn"
+          className="search-btn p-1 bg-yellow-200 rounded-md"
           onClick={() => {
+            //need to filterData
+            //const data = filterData(searchText, allRestaurants);
+            //update the state - restaurants
+            //setFilteredRestaurants(data);
+
+            // user click on button searchData function is called
             searchData(searchText, allRestaurants);
           }}
         >
-          <i className="fa fa-search"></i>
+          <h3> Search</h3>
         </button>
         {/*<h1>{searchClicked}</h1>*/}
       </div>
-      {}
+      {/*
+            ->if restaurants data is not fetched then display Shimmer UI after the fetched data display restaurants cards 
+            -> Also handled shimmer with search box
+            */}
       {errorMessage && <div className="error-container">{errorMessage}</div>}
       {allRestaurants?.length === 0 ? ( //Optional Chaining
         <Shimmer />
       ) : (
-        <div className="restaurant-list">
+        <div className=" flex flex-wrap">
           {filteredRestaurants.map((restaurant) => {
             return (
+              // no key (not acceptable) <<< index key(use only if you don't have anything LAST OPTION) <<< unique key (BEST PRACTICE).
               <Link
                 to={"/restaurant/" + restaurant.data.id}
                 key={restaurant.data.id}
