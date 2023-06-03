@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IMG_CDN_URl } from "../coding-7/constant";
 import Shimmer from "./shimmer";
+import { useDispatch } from "react-redux";
+import { additem } from "./utils/cartSlice";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
@@ -27,11 +29,17 @@ const RestaurantMenu = () => {
     );
   }
 
+  const dispatch = useDispatch();
+
+  const addFoodItem = (item) => {
+    dispatch(additem(item));
+  };
+
   return !restaurantMenu ? (
     <Shimmer />
   ) : (
     <>
-      <div className="Menu">
+      <div className="flex">
         <div>
           <h1>Restautant id: {resId}</h1>
           <h2>{restaurantDetails?.name}</h2>
@@ -48,7 +56,17 @@ const RestaurantMenu = () => {
         <div>
           <h1>Menu</h1>
           {restaurantMenu.map((item) => (
-            <li key={item?.card?.info?.id}>{item?.card?.info?.name}</li>
+            <li key={item?.card?.info?.id}>
+              {item?.card?.info?.name}{" "}
+              <button
+                className=" p-1 border-t-neutral-400 "
+                onClick={() => {
+                  addFoodItem(item);
+                }}
+              >
+                add
+              </button>{" "}
+            </li>
           ))}
         </div>
       </div>

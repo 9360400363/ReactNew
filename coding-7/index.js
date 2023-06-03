@@ -10,14 +10,18 @@ import Error from "../components/Error";
 import Contact from "../components/Contact";
 import RestaurantMenu from "../components/RestaurantMenu";
 import Instamart from "../components/instamart";
-
+import { Provider } from "react-redux";
+import store from "../components/utils/Store";
+import Cart from "../components/Cart";
 const Applayout = () => {
   return (
-    <React.Fragment>
-      <Header />
-      <Outlet />
-      <Footer />
-    </React.Fragment>
+    <Provider store={store}>
+      <React.Fragment>
+        <Header />
+        <Outlet />
+        <Footer />
+      </React.Fragment>
+    </Provider>
   );
 };
 
@@ -39,6 +43,7 @@ const appRouter = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
+
       {
         path: "/instamart",
         element: <Instamart />,
@@ -46,6 +51,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/Cart",
+        element: <Cart />,
       },
     ],
   },

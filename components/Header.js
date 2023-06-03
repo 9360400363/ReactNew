@@ -1,7 +1,8 @@
 import Logo from "../icons/Chef in the Hat.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
+import store from "./utils/Store";
 export const Title = () => (
   <div>
     <a href="/">
@@ -13,6 +14,8 @@ export const Title = () => (
 const Header = function () {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
   return (
     <div className=" flex justify-between bg-yellow-200 shadow-md">
       <Title />
@@ -30,12 +33,8 @@ const Header = function () {
             </Link>
           </li>
           <li className=" px-2 ">
-            <Link
-              to="/contact"
-              id="Nav-container"
-              className="fa fa-shopping-cart"
-            >
-              Cart
+            <Link to="/Cart" id="Nav-container" className="fa fa-shopping-cart">
+              Cart{cartItems.length}
             </Link>
           </li>
           <li className=" px-2 ">
